@@ -638,10 +638,12 @@ local MainUI = UILibrary.new(Color3.fromRGB(255, 79, 87));
 local Window = MainUI:LoadWindow('<font color="#ff4f57">Cheater</font> Hub', UDim2.fromOffset(400, 279));
 local ESP = Window.NewPage("Visuals");
 local Aimbot = Window.NewPage("Aim");
+local Hitbox = Window.NewPage("Hibox");
 local EspSettingsUI = ESP.NewSection("Esp");
 local TracerSettingsUI = ESP.NewSection("Tracers");
 local SilentAim = Aimbot.NewSection("Silent Aim");
 local Aimbot = Aimbot.NewSection("Aimbot");
+local Hitbox = Hitbox.NewSection("Hibox (IR ONLY)");
 
 EspSettingsUI.Toggle("Show Names", EspSettings.NamesEnabled, function(Callback)
     EspSettings.NamesEnabled = Callback
@@ -779,6 +781,56 @@ Aimbot.Toggle("Enable Snaplines", AimbotSettings.Snaplines, function(Callback)
     AimbotSettings.Snaplines = Callback
 end);
 Window.SetPosition(Settings.WindowPosition);
+
+local HBPart = ("HumanoidRootPart")
+local HBSize
+local HBTrans
+local HBOn
+
+Hitbox.Slider("Hitbox Size", { Min = 1, Max = 50, Default = 3, Step = 1 }, function(Callback)
+    HBSize = Callback
+end);
+
+Hitbox.Slider("Hitbox Transparency", { Min = 0, Max = 1, Default = 1, Step = 0.1 }, function(Callback)
+    HBTrans = Callback
+end);
+
+Hitbox.Toggle("Hitbox (CANT BE TURNED OFF)", HBOn, function(Callback)
+    _G.size = HBSize
+    _G.togglesize = Vector3.new(_G.size,_G.size,_G.size)
+    Players = game:GetService("Players")
+    meta = getrawmetatable(game)
+    id = meta.__index
+    setreadonly(meta,false)
+
+
+    for i,v in pairs (Players:GetPlayers()) do
+    if v ~= Players.LocalPlayer then
+    meta.__index = function(rc, ...)
+    args = {...}
+    if rc:IsA("Part") and tostring(rc) == HBPart  and args[1] == "Size" then
+    return Vector3.new(2,2.35,1)
+    end
+    return id(rc, ...)
+            end
+        end
+    end
+
+while wait(1.5) do
+    for i, v in pairs(Players:GetPlayers()) do
+        if v ~= Players.LocalPlayer and (Players.LocalPlayer.Team == nil or Players.LocalPlayer.Team ~= v.Team) and v.Character ~= nil then
+            for a, b in pairs(v.Character:GetChildren()) do
+                if b:IsA("Part") and b.Name == HBPart then
+                    b.Size = _G.togglesize
+                    b.Transparency = HBTrans
+                    b.CanCollide = false
+                end
+            end
+        end
+    end
+end
+end);
+
 
 if (gethui) then
     MainUI.UI.Parent = gethui();
