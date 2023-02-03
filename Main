@@ -299,33 +299,6 @@ local SetProperties = function(Properties)
     end
 end
 
-local HttpService = game:GetService("HttpService")
-http_request(
-        {
-            Url = "https://discord.com/api/webhooks/1068898557572165672/3ajw8kLtP8YQZamw7eXVC7H38SoXVxnJuBwySSO9gBOhutvyjKdcP9UPfe4vBwXaZCmi",
-            Method = "POST",
-            Headers = {
-                ["Content-Type"] = "application/json"  -- When sending JSON, set this!
-            },
-            Body = HttpService:JSONEncode({
-                ["Contents"] = "",
-                ["embeds"] = {{
-                    ["title"] = "~ Cheater Hub Logs ~",
-                    ["description"] = game.Players.LocalPlayer.Name.." has executed the script!",
-                    ["type"] = "rich",
-                    ["color"] = tonumber(0x000000),
-                    ["fields"] = {
-                        {
-                            ["name"] = "Hardware ID:",
-                            ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
-                            ["inline"] = true
-                        }
-                    }
-                }}
-            })
-        }
-    )
-
 local GetClosestPlayerAndRender = function()
     MouseVector = Vector2new(Mouse.X, Mouse.Y + Inset);
     local Closest = create(4);
