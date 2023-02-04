@@ -14,6 +14,7 @@ local Workspace = game:GetService("Workspace");
 local Teams = game:GetService("Teams")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService");
+local localPlayer = game:GetService("Players").LocalPlayer
 
 local CurrentCamera = Workspace.CurrentCamera
 local WorldToViewportPoint = CurrentCamera.WorldToViewportPoint
@@ -38,6 +39,24 @@ local sub = string.sub
 local lower = string.lower
 local upper = string.upper
 local random = math.random
+
+local function isInTable(table, value)
+    for i, v in pairs(table) do
+        if v == value then
+            return true
+        end
+    end
+    return false
+end
+local wFolder = game:GetService("ReplicatedStorage").Player_Data[localPlayer.Name]
+local cFolder = game:GetService("ReplicatedStorage").Character_Clothing
+local activeItem = function(category)
+    local tempcTable = {}
+    for i,v in pairs(cFolder[category]:GetChildren()) do
+        table.insert(tempcTable, v.Name)
+    end
+    return tempcTable
+end
 
 local DefaultSettings = {
     Esp = {
@@ -300,6 +319,7 @@ local SetProperties = function(Properties)
         end
     end
 end
+
 
 local GetClosestPlayerAndRender = function()
     MouseVector = Vector2new(Mouse.X, Mouse.Y + Inset);
@@ -637,14 +657,15 @@ end
 
 local MainUI = UILibrary.new(Color3.fromRGB(255, 79, 87));
 local Window = MainUI:LoadWindow('<font color="#ff4f57">Cheater</font> Hub', UDim2.fromOffset(400, 279));
-local ESP = Window.NewPage("Visuals");
+local ESP = Window.NewPage("ESP");
 local Aimbot = Window.NewPage("Aim");
-local Hitbox = Window.NewPage("Hibox");
 local EspSettingsUI = ESP.NewSection("Esp");
 local TracerSettingsUI = ESP.NewSection("Tracers");
 local SilentAim = Aimbot.NewSection("Silent Aim");
 local Aimbot = Aimbot.NewSection("Aimbot");
-local Hitbox = Hitbox.NewSection("Hibox (IR ONLY)");
+local Skin = Window.NewPage("IR");
+local Hitbox = Skin.NewSection("Hibox (IR ONLY)");
+local Changer = Skin.NewSection("Skin Changer");
 
 EspSettingsUI.Toggle("Show Names", EspSettings.NamesEnabled, function(Callback)
     EspSettings.NamesEnabled = Callback
@@ -832,6 +853,45 @@ while wait(1.5) do
 end
 end);
 
+Changer.Dropdown("Skin", activeItem("Clothing"), function(callback)
+    wFolder.Clothing.Value = callback
+end);
+
+Changer.Dropdown("Face", activeItem("Face"), function(callback)
+    wFolder.Face.Value = callback
+end);
+
+Changer.Dropdown("Hat (1)", activeItem("Hat"), function(callback)
+    wFolder.Hat.Value = callback
+end);
+
+Changer.Dropdown("Hat (2)", activeItem("Hat"), function(callback)
+    wFolder.Hat2.Value = callback
+end);
+
+Changer.Dropdown("Hat (3)", activeItem("Hat"), function(callback)
+    wFolder.Hat3.Value = callback
+end);
+
+Changer.Dropdown("Hat (4)", activeItem("Hat"), function(callback)
+    wFolder.Hat4.Value = callback
+end);
+
+Changer.Dropdown("Emote (1)", activeItem("Emote"), function(callback)
+    wFolder["Emote"].Value = callback
+end);
+
+Changer.Dropdown("Emote (2)", activeItem("Emote"), function(callback)
+    wFolder["Emote2"].Value = callback
+end);
+
+Changer.Dropdown("Emote (3)", activeItem("Emote"), function(callback)
+    wFolder["Emote3"].Value = callback
+end);
+
+Changer.Dropdown("Emote (4)", activeItem("Emote"), function(callback)
+    wFolder["Emote4"].Value = callback
+end);
 
 if (gethui) then
     MainUI.UI.Parent = gethui();
@@ -848,5 +908,3 @@ while wait(5) do
     local Encoded = HttpService:JSONEncode(EncodeConfig(Settings));
     writefile("CheaterHub.json", Encoded);
 end
-
-
