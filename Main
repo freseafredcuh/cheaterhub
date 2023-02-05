@@ -1,5 +1,7 @@
 if game.PlaceId == 1320186298 or game.PlaceId == 3213501585 or game.PlaceId == 3210442546 or game.PlaceId == 3678591308 or game.PlaceId == 5778397818 or game.PlaceId == 6582295389 or game.PlaceId == 1320174999 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/IR"))();
+elseif game.PlaceId == 3527629287 then
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/BPB"))();
 else
     loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/Universal"))();
 end
