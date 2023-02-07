@@ -664,7 +664,7 @@ local TracerSettingsUI = ESP.NewSection("Tracers");
 local SilentAim = Aimbot.NewSection("Silent Aim");
 local Aimbot = Aimbot.NewSection("Aimbot");
 local Skin = Window.NewPage("IR");
-local Hitbox = Skin.NewSection("Hibox (IR ONLY)");
+local Hitbox = Skin.NewSection("Misc");
 local Changer = Skin.NewSection("Skin Changer");
 
 EspSettingsUI.Toggle("Show Names", EspSettings.NamesEnabled, function(Callback)
@@ -857,6 +857,10 @@ Changer.Dropdown("Skin", activeItem("Clothing"), function(callback)
     wFolder.Clothing.Value = callback
 end);
 
+Changer.Dropdown("Glider", activeItem("Glider"), function(callback)
+    wFolder.Glider.Value = callback
+end);
+
 Changer.Dropdown("Face", activeItem("Face"), function(callback)
     wFolder.Face.Value = callback
 end);
@@ -877,6 +881,23 @@ Changer.Dropdown("Hat (4)", activeItem("Hat"), function(callback)
     wFolder.Hat4.Value = callback
 end);
 
+Changer.Dropdown("Back Object (1)", activeItem("Back Object"), function(callback)
+    wFolder["Back Object"].Value = callback
+end);
+
+Changer.Dropdown("Back Object (2)", activeItem("Back Object"), function(callback)
+    wFolder["Back Object2"].Value = callback
+end);
+
+Changer.Dropdown("Back Object (3)", activeItem("Back Object"), function(callback)
+    wFolder["Back Object3"].Value = callback
+end);
+
+Changer.Dropdown("Back Object (4)", activeItem("Back Object"), function(callback)
+    wFolder["Back Object4"].Value = callback
+end);
+
+
 Changer.Dropdown("Emote (1)", activeItem("Emote"), function(callback)
     wFolder["Emote"].Value = callback
 end);
@@ -891,6 +912,18 @@ end);
 
 Changer.Dropdown("Emote (4)", activeItem("Emote"), function(callback)
     wFolder["Emote4"].Value = callback
+end);
+
+Changer.Dropdown("Hair", activeItem("Hair"), function(callback)
+    wFolder["Hair"].Value = callback
+end);
+
+Changer.Dropdown("Hair Colour", activeItem("Hair Color"), function(callback)
+    wFolder["Hair Color"].Value = BrickColor.new(callback)
+end);
+
+Changer.Dropdown("Skin Colour", activeItem("Skin Color"), function(callback)
+    wFolder["Skin Color"].Value = BrickColor.new(callback)
 end);
 
 if (gethui) then
