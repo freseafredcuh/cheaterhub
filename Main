@@ -2,6 +2,8 @@ if game.PlaceId == 1320186298 or game.PlaceId == 3213501585 or game.PlaceId == 3
     loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/IR"))();
 elseif game.PlaceId == 3527629287 then
      loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/BPB"))();
+elseif game.PlaceId == 286090429 then
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/Arsenal"))();
 else
     loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/Universal"))();
 end
