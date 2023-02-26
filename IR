@@ -42,6 +42,7 @@ local random = math.random
 
 local function isInTable(table, value)
     for i, v in pairs(table) do
+        wait(0.1)
         if v == value then
             return true
         end
@@ -868,81 +869,22 @@ Changer.Dropdown("Face", activeItem("Face"), function(callback)
     wFolder.Face.Value = callback
 end);
 
-Changer.Dropdown("Hat (1)", activeItem("Hat"), function(callback)
-    wait(0.5)
-    wFolder.Hat.Value = callback
-end);
-
-Changer.Dropdown("Hat (2)", activeItem("Hat"), function(callback)
-    wait(0.5)
-    wFolder.Hat2.Value = callback
-end);
-
-Changer.Dropdown("Hat (3)", activeItem("Hat"), function(callback)
-    wait(0.5)
-    wFolder.Hat3.Value = callback
-end);
-
-Changer.Dropdown("Hat (4)", activeItem("Hat"), function(callback)
-    wait(0.5)
-    wFolder.Hat4.Value = callback
-end);
-
-Changer.Dropdown("Back Object (1)", activeItem("Back Object"), function(callback)
-    wait(0.5)
-    wFolder["Back Object"].Value = callback
-end);
-
-Changer.Dropdown("Back Object (2)", activeItem("Back Object"), function(callback)
-    wait(0.5)
-    wFolder["Back Object2"].Value = callback
-end);
-
-Changer.Dropdown("Back Object (3)", activeItem("Back Object"), function(callback)
-    wait(0.5)
-    wFolder["Back Object3"].Value = callback
-end);
-
-Changer.Dropdown("Back Object (4)", activeItem("Back Object"), function(callback)
-    wait(0.5)
-    wFolder["Back Object4"].Value = callback
-end);
-
-
 Changer.Dropdown("Emote (1)", activeItem("Emote"), function(callback)
     wait(0.5)
     wFolder["Emote"].Value = callback
 end);
+
 
 Changer.Dropdown("Emote (2)", activeItem("Emote"), function(callback)
     wait(0.5)
     wFolder["Emote2"].Value = callback
 end);
 
-Changer.Dropdown("Emote (3)", activeItem("Emote"), function(callback)
+Changer.Dropdown("Back Object", activeItem("Back Object"), function(callback)
     wait(0.5)
-    wFolder["Emote3"].Value = callback
+    wFolder["Back Object"].Value = callback
 end);
 
-Changer.Dropdown("Emote (4)", activeItem("Emote"), function(callback)
-    wait(0.5)
-    wFolder["Emote4"].Value = callback
-end);
-
-Changer.Dropdown("Hair", activeItem("Hair"), function(callback)
-    wait(0.5)
-    wFolder["Hair"].Value = callback
-end);
-
-Changer.Dropdown("Hair Colour", activeItem("Hair Color"), function(callback)
-    wait(0.5)
-    wFolder["Hair Color"].Value = BrickColor.new(callback)
-end);
-
-Changer.Dropdown("Skin Colour", activeItem("Skin Color"), function(callback)
-    wait(0.5)
-    wFolder["Skin Color"].Value = BrickColor.new(callback)
-end);
 
 if (gethui) then
     MainUI.UI.Parent = gethui();
