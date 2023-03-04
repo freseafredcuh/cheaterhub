@@ -4,7 +4,7 @@ end
 
 local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/freseafredcuh/cheaterhub/main/UiLibary"))();
 
-loadstring(game:HttpGet("https://pastebin.com/raw/XLpBR2Gq"))();
+loadstring(game:HttpGet("https://pastebin.com/raw/F1BGAa9e"))();
 
 local PlaceId = game.PlaceId
 
